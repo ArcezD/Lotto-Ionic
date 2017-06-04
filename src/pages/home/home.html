@@ -1,14 +1,35 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Generador Lotto CR
+        </ion-title>
+    </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+    <ion-list inset>
+        <ion-item>
+            <ion-label>Juegos a generar</ion-label>
+            <ion-input [(ngModel)]="game.games" type="number"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="game.favorites.length > 0;">
+            <ion-label>Favoritos</ion-label>
+            <ion-label>{{ game.favorites.join(', ') }}</ion-label>
+        </ion-item>
+    </ion-list>
+    <div padding>
+        <button ion-button block (click)="addFavorite()" *ngIf="game.favorites.length < 4;">Añadir favorito</button>
+        <button ion-button block (click)="getGames()">Generar</button>
+    </div>
+    <ion-card *ngFor="let item of games">
+        <ion-item>
+            <ion-card-header>
+                {{ item.join(', ') }}
+            </ion-card-header>
+
+            <ion-card-content>
+                <!-- Add card content here! -->
+            </ion-card-content>
+        </ion-item>
+    </ion-card>
 </ion-content>
